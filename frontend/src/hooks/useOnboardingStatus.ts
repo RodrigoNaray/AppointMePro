@@ -66,3 +66,4 @@ export function useOnboardingStatus(): OnboardingStatus {
 
   return { ...state, refetch: fetchStatus };
 }
+
