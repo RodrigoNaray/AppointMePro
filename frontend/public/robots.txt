@@ -11,4 +11,4 @@ Disallow: /book/confirm
 Disallow: /book/success
 
 # Referencia al sitemap (actualizar con dominio real en producción)
-Sitemap: https://appointmepro.me/sitemap.xml
+Sitemap: https://appointmepro.com/sitemap.xml

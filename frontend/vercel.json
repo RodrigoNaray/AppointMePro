@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "https://api.appointmepro.me/sitemap.xml"
+      "destination": "https://api.appointmepro.com/sitemap.xml"
     },
     {
       "source": "/(.*)",

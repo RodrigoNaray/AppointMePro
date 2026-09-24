@@ -8,7 +8,7 @@ Full-stack booking platform for independent professionals to manage appointments
 [![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748?logo=prisma)](https://www.prisma.io/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql)](https://postgresql.org/)
 
-**Live Demo:** [https://www.appointmepro.me/](https://www.appointmepro.me/)
+**Live Demo:** [https://appointmepro.com/](https://appointmepro.com/)
 
 ---
 

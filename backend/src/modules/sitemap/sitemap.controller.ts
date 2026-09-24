@@ -18,7 +18,7 @@ export async function getSitemap(req: Request, res: Response): Promise<void> {
   try {
     // Reutilizar CLIENT_URL (ya existe) en lugar de PUBLIC_DOMAIN
     // Ambas variables apuntan al mismo dominio del frontend
-    const baseUrl = process.env.CLIENT_URL || 'https://appointmepro.me';
+    const baseUrl = process.env.CLIENT_URL || 'https://appointmepro.com';
 
     // Generar sitemap dinámicamente
     const xml = await generateSitemapXml(baseUrl);

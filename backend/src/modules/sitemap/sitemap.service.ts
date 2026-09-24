@@ -12,7 +12,7 @@ interface SitemapUrl {
 
 /**
  * Genera el contenido XML del sitemap dinámicamente
- * @param baseUrl - URL base del sitio (ej: https://appointmepro.me)
+ * @param baseUrl - URL base del sitio (ej: https://appointmepro.com)
  * @returns XML string del sitemap
  * 
  * Justificación Google SEO Best Practices Oct 2025:
