@@ -1,34 +1,11 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { ExternalLink, Navigation } from "lucide-react";
-
-/**
- * AppMap Component
- * 
- * Mapa estático de visualización con Leaflet + CartoDB Fastly CDN.
- * 
- * Best Practices:
- * - React 19: Componente funcional con tipado estricto TypeScript
- * - Performance: Tile server CartoDB con Fastly CDN (mejor latencia Uruguay vs OSM directo)
- * - UX: Mapa estático (solo visualización) + botón "Ver en mapas" para navegación
- * - UX Mobile: Deep link a Google Maps/Apple Maps (apps nativas)
- * - UX Desktop: Abre Google Maps en nueva pestaña
- * - Accessibility: Aria-label + alt text para lectores de pantalla
- * - OWASP A04:2021: No expone API keys (tile server público sin auth)
- * 
- * Deep Links:
- * - iOS: maps://maps.apple.com/?q={lat},{lng}
- * - Android: geo:{lat},{lng}?q={lat},{lng}
- * - Universal: https://www.google.com/maps?q={lat},{lng}
- * 
- * Tile Server:
- * - URL: https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png
- * - Attribution: © OpenStreetMap contributors © CartoDB
- * - CDN: Fastly (mejor performance LATAM)
- * 
- * @see https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
- * @see https://developers.google.com/maps/documentation/urls/get-started
- */
+import {
+  MAP_TILE_ATTRIBUTION_URL,
+  MAP_TILE_MAX_NATIVE_ZOOM,
+  MAP_TILE_URL,
+} from "@/lib/mapTiles";
 
 interface AppMapProps {
   /** Latitud (rango: -90 a 90) */
@@ -135,9 +112,9 @@ export function AppMap({
         attributionControl={false}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
-          maxZoom={19}
+          url={MAP_TILE_URL}
+          maxNativeZoom={MAP_TILE_MAX_NATIVE_ZOOM}
+          maxZoom={MAP_TILE_MAX_NATIVE_ZOOM}
         />
 
         <Marker position={[lat, lng]} icon={defaultIcon}>
@@ -149,7 +126,7 @@ export function AppMap({
 
       {/* Attribution footer (OWASP compliance - mantener créditos OSM) */}
       <div className="absolute bottom-0 right-0 z-10 bg-background/80 backdrop-blur-sm px-2 py-1 text-xs text-muted-foreground">
-        © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="hover:underline">OpenStreetMap</a> · <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer" className="hover:underline">CartoDB</a>
+        © <a href={MAP_TILE_ATTRIBUTION_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">OpenStreetMap</a> contributors
       </div>
     </div>
   );

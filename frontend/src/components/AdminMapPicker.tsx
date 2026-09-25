@@ -31,6 +31,11 @@ import L from "leaflet";
 import { MapPin, Navigation, Search, Loader2 } from "lucide-react";
 
 import { geocodeAddress, reverseGeocode } from "@/lib/geocoding";
+import {
+  MAP_TILE_ATTRIBUTION,
+  MAP_TILE_MAX_NATIVE_ZOOM,
+  MAP_TILE_URL,
+} from "@/lib/mapTiles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -304,9 +309,9 @@ export function AdminMapPicker({
           scrollWheelZoom={true}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
-            subdomains="abcd"
+            attribution={MAP_TILE_ATTRIBUTION}
+            url={MAP_TILE_URL}
+            maxNativeZoom={MAP_TILE_MAX_NATIVE_ZOOM}
             maxZoom={20}
           />
           <DraggableMarker
