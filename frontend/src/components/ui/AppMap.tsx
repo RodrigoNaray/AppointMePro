@@ -48,36 +48,13 @@ export function AppMap({
   width = "100%",
   label = "Ubicación",
 }: AppMapProps) {
-  /**
-   * Genera URL para abrir en Google Maps / Apple Maps
-   * 
-   * Estrategia multi-plataforma:
-   * - iOS: Intenta abrir Apple Maps (maps://) primero, fallback a Google Maps web
-   * - Android: Google Maps app via intent, fallback a web
-   * - Desktop: Google Maps web en nueva pestaña
-   * 
-   * OWASP A04:2021: Uso de window.location.href en lugar de window.open() para
-   * evitar popup blockers en iOS Safari
-   */
   const handleOpenMaps = () => {
-    // Detectar iOS (iPhone, iPad, iPod)
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     
     if (isIOS) {
-      // iOS: Usar Apple Maps con fallback a Google Maps web
-      // maps:// abre Apple Maps directamente sin prompt
       const appleMapsUrl = `maps://maps.apple.com/?q=${lat},${lng}`;
-      const googleMapsWebUrl = `https://www.google.com/maps?q=${lat},${lng}`;
-      
-      // Intentar abrir Apple Maps
       window.location.href = appleMapsUrl;
-      
-      // Fallback a Google Maps web después de 1 segundo si Apple Maps no está instalado
-      setTimeout(() => {
-        window.location.href = googleMapsWebUrl;
-      }, 1000);
     } else {
-      // Android/Desktop: Abrir Google Maps en nueva pestaña
       const googleMapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
       window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
     }
@@ -87,9 +64,10 @@ export function AppMap({
     <div className="rounded-lg overflow-hidden border shadow-sm relative">
       {/* Botón "Ver en mapas" - Visible en todas las pantallas */}
       <button
+        type="button"
         onClick={handleOpenMaps}
         className="absolute top-4 right-4 z-20 bg-card hover:bg-muted text-foreground px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 text-sm font-medium transition-colors border border-border"
-        aria-label="Abrir ubicación en Google Maps"
+        aria-label="Abrir ubicación en mapas"
       >
         <Navigation className="h-4 w-4" />
         <span className="hidden sm:inline">Ver en mapas</span>
